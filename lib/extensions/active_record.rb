@@ -12,14 +12,14 @@ module ViewModels
       # for e.g. url generation:
       # * edit_user_path(view_model)
       #
-      delegate :id, :to_param, :to => :model
+      delegate :id, :to_param, :to_key, :to => :model
       
       # Delegate to the action controller record identifier.
       #
       def dom_id
         ActionController::RecordIdentifier.dom_id model
       end
-      
+            
     end
   end
 end
