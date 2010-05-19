@@ -19,7 +19,7 @@ module ViewModels
     
     # Make helper and helper_method available
     #
-    include ActionController::Helpers
+    include AbstractController::Helpers
     
     # Create a view_model. To create a view_model, you need to have a model (to present) and a context.
     # The context is usually a view or a controller, but doesn't need to be.
@@ -120,16 +120,14 @@ module ViewModels
         #
         def template_path view, options
           raise_template_error_with options.error_message if inheritance_chain_ends?
-          
           template_path_from(view, options) || self.next_in_render_hierarchy.template_path(view, options)
         end
         
         # Accesses the view to find a suitable template path.
         #
-        def template_path_from view, options
+        def template_path_from view, options 
           template = view.find_template tentative_template_path(options)
-          
-          template && template.path
+          template && template.virtual_path
         end
         
         # Return as render path either a stored path or a newly generated one.
@@ -248,7 +246,7 @@ module ViewModels
         # view = if controller.response.template
         #   controller.response.template
         # else
-          View.new controller, master_helper_module
+          View.new controller, self._helpers #master_helper_module
         # end
         
         # view.extend Extensions::View
