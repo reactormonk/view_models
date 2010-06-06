@@ -175,7 +175,7 @@ module ViewModels
     # Make all the dynamically generated routes (restful routes etc.)
     # available in the view_model
     #
-    ActionController::Routing::Routes.install_helpers self
+    Rails.application.routes.install_helpers self
     
     # Renders the given partial in the view_model's view root in the format given.
     #
