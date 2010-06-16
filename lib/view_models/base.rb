@@ -17,9 +17,9 @@ module ViewModels
     #
     attr_reader :model, :controller
     
-    # Make helper and helper_method available
-    #
-    include AbstractController::Helpers
+    # # Make helper and helper_method available
+    # #
+    # See Rails version specific files.
     
     # Create a view_model. To create a view_model, you need to have a model (to present) and a context.
     # The context is usually a view or a controller, but doesn't need to be.
@@ -123,12 +123,12 @@ module ViewModels
           template_path_from(view, options) || self.next_in_render_hierarchy.template_path(view, options)
         end
         
-        # Accesses the view to find a suitable template path.
-        #
-        def template_path_from view, options 
-          template = view.find_template tentative_template_path(options)
-          template && template.virtual_path
-        end
+        # # Accesses the view to find a suitable template path.
+        # #
+        # def template_path_from view, options 
+        #   template = view.find_template tentative_template_path(options)
+        #   template && template.virtual_path
+        # end
         
         # Return as render path either a stored path or a newly generated one.
         #
@@ -175,7 +175,7 @@ module ViewModels
     # Make all the dynamically generated routes (restful routes etc.)
     # available in the view_model
     #
-    Rails.application.routes.install_helpers self
+    # See Rails specific files.
     
     # Renders the given partial in the view_model's view root in the format given.
     #
@@ -238,19 +238,19 @@ module ViewModels
         self.class.render view_instance, options
       end
       
-      # Returns a view instance for render_xxx.
-      #
-      # TODO Try getting a view instance from the controller.
-      #
-      def view_instance
-        # view = if controller.response.template
-        #   controller.response.template
-        # else
-          View.new controller, self._helpers #master_helper_module
-        # end
-        
-        # view.extend Extensions::View
-      end
+      # # Returns a view instance for render_xxx.
+      # #
+      # # TODO Try getting a view instance from the controller.
+      # #
+      # def view_instance
+      #   # view = if controller.response.template
+      #   #   controller.response.template
+      #   # else
+      #     View.new controller, self._helpers #master_helper_module
+      #   # end
+      #   
+      #   # view.extend Extensions::View
+      # end
       
       # Determines what format to use for rendering.
       #

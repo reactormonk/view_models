@@ -29,6 +29,18 @@ Spec::Rake::SpecTask.new(:rcov) do |t|
   puts "Open coverage/index.html for the rcov results."
 end
 
+desc "Run Rails 2.3+ specs"
+task :spec2 do
+  ::RAILS_VERSION = 2
+  Rake::Task['spec'].invoke
+end
+
+desc "Run Rails 3.0.0+ specs"
+task :spec3 do
+  ::RAILS_VERSION = 3
+  Rake::Task['spec'].invoke
+end
+
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gemspec|
