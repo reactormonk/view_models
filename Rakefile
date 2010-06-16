@@ -15,7 +15,10 @@ task :default => :spec
 
 # run with rake spec
 Spec::Rake::SpecTask.new(:spec) do |t|
-  t.spec_opts = %w{--colour --format progress --loadby mtime --reverse}
+  t.spec_opts = lambda do
+    defaults = %w{--colour --format progress --loadby mtime --reverse}
+    defaults << "-- rails_version=#{@rails_version}" if @rails_version
+  end
   t.spec_files = Dir.glob('spec/**/*_spec.rb')
   t.warning = false
 end
@@ -31,13 +34,13 @@ end
 
 desc "Run Rails 2.3+ specs"
 task :spec2 do
-  ::RAILS_VERSION = 2
+  @rails_version = 2
   Rake::Task['spec'].invoke
 end
 
 desc "Run Rails 3.0.0+ specs"
 task :spec3 do
-  ::RAILS_VERSION = 3
+  @rails_version = 3
   Rake::Task['spec'].invoke
 end
 

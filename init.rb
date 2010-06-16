@@ -1,15 +1,16 @@
 # require 'experimental/modules_in_render_hierarchy'
 
-# Version check and includes here
-
-if true # ::RAILS_VERSION == 3 || Rails.respond_to?(:version) && Rails.version >= '3.0.0'
-  gem 'rails', '>= 3.0'
-else
-  gem 'rails', '~> 2.3'
-end
-
 require 'extensions/active_record'
 require 'extensions/model_reader'
+
+# Specific requires here.
+#
+if defined?(Rails) && Rails.respond_to?(:version) && Rails.version >= '3.0.0'
+  require 'view_models/base_rails_3'
+else
+  require 'view_models/base_rails_2'
+  require 'view_models/view_rails_2'
+end
 
 require 'view_models'
 require 'view_models/render_options'
