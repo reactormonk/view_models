@@ -23,5 +23,7 @@ require 'helpers/view'
 require 'helpers/rails'
 require 'helpers/collection'
 
+# TODO AbstractController?
+#
 ActionController::Base.send :include, ViewModels::Helpers::Rails
 ActionView::Base.send       :include, ViewModels::Helpers::Rails

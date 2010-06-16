@@ -23,7 +23,9 @@ module ViewModels
     # Make all the dynamically generated routes (restful routes etc.)
     # available in the view_model
     #
-    Rails.application.routes.install_helpers self
+    # TODO FIXME
+    #
+    Rails.application && Rails.application.routes.install_helpers(self)
     
     # Returns a view instance for render_xxx.
     #
