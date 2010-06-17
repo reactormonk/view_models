@@ -1,27 +1,27 @@
 # require 'experimental/modules_in_render_hierarchy'
 
-require 'extensions/active_record'
-require 'extensions/model_reader'
+require 'lib/extensions/active_record'
+require 'lib/extensions/model_reader'
 
 # Specific requires here.
 #
 if defined?(Rails) && Rails.respond_to?(:version) && Rails.version >= '3.0.0'
-  require 'view_models/base_rails_3'
+  require 'lib/view_models/base_rails_3'
 else
-  require 'view_models/base_rails_2'
-  require 'view_models/view_rails_2'
+  require 'lib/view_models/base_rails_2'
+  require 'lib/view_models/view_rails_2'
 end
 
-require 'view_models'
-require 'view_models/render_options'
-require 'view_models/controller_extractor'
-require 'view_models/path_store'
-require 'view_models/base'
-require 'view_models/view'
+require 'lib/view_models'
+require 'lib/view_models/render_options'
+require 'lib/view_models/controller_extractor'
+require 'lib/view_models/path_store'
+require 'lib/view_models/base'
+require 'lib/view_models/view'
 
-require 'helpers/view'
-require 'helpers/rails'
-require 'helpers/collection'
+require 'lib/helpers/view'
+require 'lib/helpers/rails'
+require 'lib/helpers/collection'
 
 # TODO AbstractController?
 #
