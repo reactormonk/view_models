@@ -51,7 +51,18 @@ module ViewModels
       # Note: Will emit a NameError if a corresponding ViewModels constant cannot be loaded.
       #
       def specific_view_model_class_for model
-        specific_view_model_mapping[model.class]
+        result = specific_view_model_mapping[model.class]
+        return unless result
+        case result
+        when Proc
+          result.call model
+        when String
+          result.constantize
+        when Class
+          result
+        else
+          raise "Invalid value for specific view model mapping."
+        end
       end
       
     end

@@ -64,6 +64,14 @@ describe ViewModels::Helpers::Rails do
         mock(self).should_receive(:default_view_model_class_for).never
         view_model_for SomeModelClazz.new
       end
+      it "should accept Procs as well" do
+        self.should_receive(:specific_view_model_mapping).any_number_of_times.and_return proc {|model| ViewModels.const_get model.class}
+        view_model_for(SomeModelClazz.new).should be_instance_of ViewModels::SomeSpecificClazz
+      end
+      it "and Strings" do
+        self.should_receive(:specific_view_model_mapping).any_number_of_times.and_return "ViewModels::SomeSpecificClazz"
+        view_model_for(SomeModelClazz.new).should be_instance_of ViewModels::SomeSpecificClazz
+      end
     end
   end
   
